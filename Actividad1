@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta charset="UTF-8"> <!--Evita texto corrupto o roto-->
+<title>
+Captura de Datos
+</title>
+</head>
+<body>
+<h1>CAPTURA DE DATOS PERSONALES</h1>
+<br>
+<h2>INGRESA LOS DATOS QUE SE TE PIDEN</h2>
+<p>Mi primera encuesta</p>
+<hr>
+<form>
+    <label>Nombre</label>
+    <input name="nombre">
+    <hr>
+    <label>Edad</label>
+    <input name="edad">
+    <hr>
+    <label>Ciudad donde vives</label>
+    <input name="ciudad">
+    <hr>
+    <label>Fecha de Nacimiento</label>
+    <input type="date" name="fechaNacimiento">  
+    <hr>
+    <label>Pasatiempos favoritos</label>
+    <input name="pasatiempos">
+    <hr>            
+</form>
+    <a href="Resultados.html">
+    <button class="botones">Ingresamos datos!</button>
+    </a>   
+    <style>
+        body {
+      display: flex;
+      flex-direction: column;  /* Alinea los elementos uno debajo de otro */
+      align-items: center;     /* Centra horizontalmente */
+      min-height: 100vh;       /* Ocupa todo el alto de la pantalla */
+      margin: 0;
+      font-family: Arial, sans-serif; /* Fuente */
+      text-align: center;      /* Centra los textos dentro de h1, h2, p */
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+    }
+    input {
+      margin-top: 5px;
+      padding: 8px;
+      width: 80%;
+    }
+    hr {
+      width: 600%;
+      margin: 15px 0;
+    }
+    .botones { 
+    background-color: #14afec; /* Color de fondo */
+    color: white; /* Color del texto */
+    font-family: 'Arial', sans-serif; /* Tipo de fuente */
+    font-size: 16px; /* Tamaño del texto */
+    /* Tamaño del botón (espaciado interno) */
+    padding: 12px 24px; /* Arriba/Abajo e Izquierda/Derecha */
+    /* Propiedades opcionales para que se vea más moderno */
+    border: none;             /* Quita el borde por defecto */
+    border-radius: 8px;       /* Redondea las esquinas */
+    cursor: pointer;          /* Muestra la manita al pasar el cursor */
+    font-weight: bold;        /* Texto en negrita */
+  }
+    </style>
+</body>
+</html>
