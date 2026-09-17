@@ -1,0 +1,235 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Captura de Datos</title>
+</head>
+<body>
+<h1>CAPTURA DE DATOS PERSONALES</h1>
+<br>
+<h2>INGRESA LOS DATOS QUE SE TE PIDEN</h2>
+<p>Mi primera encuesta</p>
+<hr>
+<form action="Resultado.php" method="POST"> <!-- Se agregaron la accion y el motodo -->
+    <label>Nombre</label>
+    <input name="nombre">
+    <hr>
+    <label>Edad</label>
+    <input name="edad">
+    <hr>
+    <label>Ciudad donde vives</label>
+    <input name="ciudad">
+    <hr>
+    <label>Fecha de Nacimiento</label>
+    <input type="date" name="fechaNacimiento">  
+    <hr>
+    <label>Pasatiempos favoritos</label>
+    <input name="pasatiempos">
+    <hr>        
+    <button type="submit" class="botones">Ingresamos datos!</button>
+</form>
+    <style>
+    body {
+      display: flex;
+      flex-direction: column;  /* Alinea los elementos uno debajo de otro */
+      align-items: center;     /* Centra horizontalmente */
+      min-height: 100vh;       /* Ocupa todo el alto de la pantalla */
+      margin: 0;
+      font-family: Arial, sans-serif; /* Fuente */
+      text-align: center;      /* Centra los textos dentro de h1, h2, p */
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+    }
+    input {
+      margin-top: 5px;
+      padding: 8px;
+      width: 80%;
+    }
+    hr {
+      width: 100%; /* Corregido para que no rompa la pantalla */
+      margin: 15px 0;
+    }
+    .botones { 
+      background-color: #14afec; /* Color de fondo */
+      color: white; /* Color del texto */
+      font-family: 'Arial', sans-serif; /* Tipo de fuente */
+      font-size: 16px; /* Tamaño del texto */
+      padding: 12px 24px; /* Arriba/Abajo e Izquierda/Derecha */
+      border: none;             /* Quita el borde por defecto */
+      border-radius: 8px;       /* Redondea las esquinas */
+      cursor: pointer;          /* Muestra la manita al pasar el cursor */
+      font-weight: bold;        /* Texto en negrita */
+      margin-top: 15px;
+    }
+    </style>
+</body>
+</html>
+
+
+- RESULTADOS -
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de la Encuesta</title>
+    <style>
+        /* Estilos generales para centrar el contenido en la pantalla */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .contenedor-resultados {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* Estilo de tu botón */
+        .botones { 
+            background-color: #14afec;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .botones:hover {
+            background-color: #0f8dbf;
+        }
+
+        /* --- ESTILOS PARA LA ALERTA POPUP CENTRADA --- */
+        .modal-fondo {
+            display: none; /* Oculto por defecto hasta hacer clic en el botón */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center;     /* Centra verticalmente */
+            z-index: 1000;
+        }
+
+        .modal-caja {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            width: 280px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .modal-botones {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .btn-si {
+            background-color: #28a745; /* Verde */
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-si:hover {
+            background-color: #218838;
+        }
+
+        .btn-no {
+            background-color: #dc3545; /* Rojo */
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-no:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-resultados">
+        <h1>Resultado de tus datos</h1>
+        <img src="Gato.gif" alt="Animación" style="width: 100px; display: block; margin: 0 auto 20px auto;">
+
+        <?php
+        // Recibiendo los datos del formulario de manera segura
+        $nombre = $_POST['nombre'] ?? '';
+        $edad = $_POST['edad'] ?? '';
+        $ciudad = $_POST['ciudad'] ?? '';
+        $fechaNacimiento = $_POST['fechaNacimiento'] ?? '';
+        $pasatiempos = $_POST['pasatiempos'] ?? '';
+
+        // Mostrando los campos con la etiqueta y el dato juntos en la misma línea
+        echo '<p><b>Nombre:</b> ' . $nombre . '</p>';
+        echo '<p><b>Edad:</b> ' . $edad . '</p>';
+        echo '<p><b>Ciudad:</b> ' . $ciudad . '</p>';
+        echo '<p><b>Lugar de Nacimiento:</b> ' . $fechaNacimiento . '</p>';
+        echo '<p><b>Pasatiempo:</b> ' . $pasatiempos . '</p>';
+        ?>
+<h2>BIEN HECHO!</h2>
+        <button class="botones" onclick="abrirAlerta()">Volver a ingresar</button>
+    </div>
+
+    <div id="miPopup" class="modal-fondo">
+        <div class="modal-caja">
+            <p style="font-weight: bold; font-size: 16px; margin-bottom: 15px;">¿Deseas volver a ingresar datos?</p>
+            <div class="modal-botones">
+                <button class="btn-si" onclick="irPrincipal()">Sí</button>
+                <button class="btn-no" onclick="cerrarAlerta()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Muestra la ventana flotante en el centro de la pantalla
+        function abrirAlerta() {
+            document.getElementById("miPopup").style.display = "flex";
+        }
+
+        // Cierra la ventana flotante si el usuario hace clic en "No"
+        function cerrarAlerta() {
+            document.getElementById("miPopup").style.display = "none";
+        }
+
+        // Redirige a la página principal si el usuario hace clic en "Sí" 
+        // (Recuerda cambiar 'index.html' por el nombre real de tu página principal si es distinto)
+        function irPrincipal() {
+            window.location.href = "index.html"; 
+        }
+    </script>
+
+</body>
+</html>
